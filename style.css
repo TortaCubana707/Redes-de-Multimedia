@@ -14,6 +14,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth; /* Para que al hacer clic en el mapa baje suavemente */
 }
 
 body {
@@ -24,35 +25,37 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 
-/* Cabecera y Animación de entrada */
+/* ====================
+   CABECERA
+   ==================== */
 .header {
     text-align: center;
     margin-bottom: 3rem;
     animation: fadeInDown 1s ease-out forwards;
 }
-
 .header h1 {
     font-size: 2.5rem;
     color: #60a5fa;
     margin-bottom: 0.5rem;
 }
+.header p { color: #94a3b8; }
 
-.header p {
-    color: #94a3b8;
-}
-
-/* Contenedor del árbol */
+/* ====================
+   MAPA CONCEPTUAL
+   ==================== */
 .tree-container {
     display: flex;
     justify-content: center;
     animation: fadeInUp 1s ease-out 0.5s forwards;
     opacity: 0;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2rem;
 }
 
-/* Estilos básicos del árbol */
 .tree ul {
     padding-top: 20px;
     position: relative;
@@ -70,7 +73,6 @@ body {
     transition: all 0.5s;
 }
 
-/* Líneas conectoras usando pseudo-elementos */
 .tree li::before, .tree li::after {
     content: '';
     position: absolute;
@@ -85,26 +87,11 @@ body {
     left: 50%;
     border-left: 2px solid var(--line-color);
 }
-
-/* Remover líneas de los extremos */
-.tree li:only-child::after, .tree li:only-child::before {
-    display: none;
-}
-.tree li:only-child {
-    padding-top: 0;
-}
-.tree li:first-child::before, .tree li:last-child::after {
-    border: 0 none;
-}
-.tree li:last-child::before {
-    border-right: 2px solid var(--line-color);
-    border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after {
-    border-radius: 5px 0 0 0;
-}
-
-/* Línea hacia los hijos */
+.tree li:only-child::after, .tree li:only-child::before { display: none; }
+.tree li:only-child { padding-top: 0; }
+.tree li:first-child::before, .tree li:last-child::after { border: 0 none; }
+.tree li:last-child::before { border-right: 2px solid var(--line-color); border-radius: 0 5px 0 0; }
+.tree li:first-child::after { border-radius: 5px 0 0 0; }
 .tree ul ul::before {
     content: '';
     position: absolute;
@@ -115,10 +102,9 @@ body {
     height: 20px;
 }
 
-/* Estilo de los Nodos (Cajas) */
 .tree li a {
     border: 2px solid var(--node-border);
-    padding: 15px 20px;
+    padding: 12px 15px;
     text-decoration: none;
     color: var(--text-color);
     font-size: 14px;
@@ -131,7 +117,6 @@ body {
     z-index: 1;
 }
 
-/* Nodo Central (Raíz) */
 .tree li a.root-node {
     border-color: var(--root-color);
     font-size: 18px;
@@ -141,13 +126,8 @@ body {
     animation: pulseGlow 2s infinite alternate;
 }
 
-/* Nodos Principales (Ramas) */
-.tree li a.branch-node {
-    font-weight: 600;
-    border-color: #10b981;
-}
+.tree li a.branch-node { font-weight: 600; border-color: #10b981; }
 
-/* Efectos Hover */
 .tree li a:hover, .tree li a:hover+ul li a {
     background: var(--node-hover);
     color: #fff;
@@ -156,7 +136,6 @@ body {
     box-shadow: 0 10px 15px rgba(0,0,0,0.5);
 }
 
-/* Colorear líneas al hacer hover */
 .tree li a:hover+ul li::after, 
 .tree li a:hover+ul li::before, 
 .tree li a:hover+ul::before, 
@@ -164,7 +143,92 @@ body {
     border-color: #94a3b8;
 }
 
-/* Animaciones Keyframes */
+/* ====================
+   SECCIÓN DE DETALLES
+   ==================== */
+.info-section {
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    animation: fadeInUp 1s ease-out 1s forwards;
+    opacity: 0;
+}
+
+.info-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--root-color);
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--line-color);
+    padding-bottom: 10px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--node-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--line-color);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+}
+
+/* Colores para cada categoría */
+.card-green { border-top-color: #10b981; }
+.card-blue { border-top-color: #3b82f6; }
+.card-purple { border-top-color: #a855f7; }
+.card-red { border-top-color: #ef4444; }
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #f8fafc;
+}
+
+.card .card-intro {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.card ul {
+    list-style: none;
+}
+
+.card ul li {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    position: relative;
+    padding-left: 15px;
+}
+
+.card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--root-color);
+}
+
+.card ul li strong {
+    color: #60a5fa;
+}
+
+/* ====================
+   ANIMACIONES Y RESPONSIVE
+   ==================== */
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -180,14 +244,8 @@ body {
     to { box-shadow: 0 0 25px rgba(139, 92, 246, 0.8); }
 }
 
-/* Responsividad para pantallas muy pequeñas */
 @media screen and (max-width: 768px) {
-    .tree li a {
-        padding: 10px;
-        font-size: 12px;
-    }
-    .tree li a.root-node {
-        font-size: 14px;
-        padding: 15px;
-    }
+    .tree li a { padding: 10px; font-size: 12px; }
+    .tree li a.root-node { font-size: 14px; padding: 15px; }
+    .header h1 { font-size: 2rem; }
 }
