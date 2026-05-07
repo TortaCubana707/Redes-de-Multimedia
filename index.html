@@ -17,43 +17,36 @@
         <div class="tree">
             <ul>
                 <li>
-                    <a href="#" class="root-node">
+                    <a href="#generadores" class="root-node">
                         <span class="icon">🌐</span> Redes Multimedia
                     </a>
                     <ul>
                         <li>
-                            <a href="#" class="branch-node">Generadores de Multimedia</a>
+                            <a href="#generadores" class="branch-node">Generadores</a>
                             <ul>
-                                <li><a href="#">Cámaras y Micrófonos (Captura)</a></li>
-                                <li><a href="#">Sensores IoT</a></li>
-                                <li><a href="#">Software de Edición / Renderizado</a></li>
+                                <li><a href="#generadores">Cámaras y Micrófonos</a></li>
+                                <li><a href="#generadores">Sensores IoT</a></li>
                             </ul>
                         </li>
-                        
                         <li>
-                            <a href="#" class="branch-node">Servidores</a>
+                            <a href="#servidores" class="branch-node">Servidores</a>
                             <ul>
-                                <li><a href="#">Servidores de Streaming (VoD/Live)</a></li>
-                                <li><a href="#">Bases de Datos Multimedia</a></li>
-                                <li><a href="#">CDN (Content Delivery Network)</a></li>
+                                <li><a href="#servidores">Streaming (VoD/Live)</a></li>
+                                <li><a href="#servidores">Bases de Datos y CDN</a></li>
                             </ul>
                         </li>
-
                         <li>
-                            <a href="#" class="branch-node">Dispositivos (Clientes)</a>
+                            <a href="#dispositivos" class="branch-node">Dispositivos</a>
                             <ul>
-                                <li><a href="#">Smartphones y Tablets</a></li>
-                                <li><a href="#">Smart TVs y Consolas</a></li>
-                                <li><a href="#">PCs y Laptops</a></li>
+                                <li><a href="#dispositivos">Smartphones / TVs</a></li>
+                                <li><a href="#dispositivos">PCs y Consolas</a></li>
                             </ul>
                         </li>
-
                         <li>
-                            <a href="#" class="branch-node">Mecanismos de Seguridad</a>
+                            <a href="#seguridad" class="branch-node">Seguridad</a>
                             <ul>
-                                <li><a href="#">Cifrado de Extremo a Extremo (E2E)</a></li>
-                                <li><a href="#">Firewalls y Filtrado de Paquetes</a></li>
-                                <li><a href="#">Sistemas de Autenticación / DRM</a></li>
+                                <li><a href="#seguridad">Cifrado E2E / DRM</a></li>
+                                <li><a href="#seguridad">Firewalls y Tokens</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -61,6 +54,53 @@
             </ul>
         </div>
     </div>
+
+    <section class="info-section">
+        <h2>Detalles Técnicos Profundos</h2>
+        <div class="cards-grid">
+            
+            <div id="generadores" class="card card-green">
+                <h3>1. Generadores (El Origen)</h3>
+                <p class="card-intro">Donde nace la información y se transforma en formato digital.</p>
+                <ul>
+                    <li><strong>Codificación (Encoding):</strong> Traducen luz/sonido usando códecs (H.264, AAC) para comprimir la información.</li>
+                    <li><strong>Compresión (Lossy vs Lossless):</strong> Casi siempre se usa compresión con pérdida para reducir drásticamente el peso del archivo eliminando detalles imperceptibles.</li>
+                    <li><strong>Tasa de bits (Bitrate):</strong> Cantidad de datos producidos por segundo. A mayor bitrate, mejor calidad pero mayor exigencia de red.</li>
+                </ul>
+            </div>
+
+            <div id="servidores" class="card card-blue">
+                <h3>2. Servidores (El Motor)</h3>
+                <p class="card-intro">Los "músculos" que procesan peticiones y enrutan datos.</p>
+                <ul>
+                    <li><strong>CDN (Content Delivery Network):</strong> Redes de servidores distribuidos globalmente. Entregan el contenido desde el nodo más cercano al usuario para reducir la latencia.</li>
+                    <li><strong>Protocolos de Streaming:</strong> Lenguajes como HLS o MPEG-DASH que dividen el video en pequeños fragmentos continuos.</li>
+                    <li><strong>Transcodificación en la nube:</strong> Convierten el video original en tiempo real a múltiples resoluciones (4K, 1080p, 720p) simultáneas.</li>
+                </ul>
+            </div>
+
+            <div id="dispositivos" class="card card-purple">
+                <h3>3. Dispositivos (El Destino)</h3>
+                <p class="card-intro">Equipos que reciben, decodifican y muestran la información.</p>
+                <ul>
+                    <li><strong>Streaming Adaptativo (ABR):</strong> El dispositivo mide el internet en tiempo real y pide al servidor bajar o subir la calidad del video automáticamente para evitar pausas (buffering).</li>
+                    <li><strong>Decodificación por Hardware:</strong> Chips dedicados a descomprimir video, ahorrando batería y mejorando el rendimiento.</li>
+                    <li><strong>Calidad de Experiencia (QoE):</strong> Métrica final de satisfacción basada en carga rápida y cero interrupciones.</li>
+                </ul>
+            </div>
+
+            <div id="seguridad" class="card card-red">
+                <h3>4. Seguridad (El Escudo)</h3>
+                <p class="card-intro">Protección de derechos de autor y privacidad en tránsito.</p>
+                <ul>
+                    <li><strong>DRM (Digital Rights Management):</strong> Encriptación antipiratería (ej. Widevine). Sin la "llave" oficial, un archivo interceptado o descargado es inútil.</li>
+                    <li><strong>Cifrado Extremo a Extremo (E2E):</strong> En comunicaciones de doble vía, la encriptación se hace de dispositivo a dispositivo; ni el servidor puede leer los datos.</li>
+                    <li><strong>Autenticación por Tokens:</strong> Permisos temporales únicos que caducan rápido para evitar accesos no autorizados a transmisiones en vivo.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
